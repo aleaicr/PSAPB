@@ -1,4 +1,3 @@
-(last readme update: July 27th 2023)
 # PPBLP - Probabilistic Pedestrian Bridges Lateral Performance
 authors: Alexis Contreras R. and Gastón Fermandois C. 
 
@@ -33,7 +32,7 @@ These parameters, must be obtained by replicating the modal shapes of the specif
 If the bridge cannot be modeled as a simply supported beam with sinusoidal modes, the mode shapes must be changed, or the model must be modified completely
 
 #### Pedestrian foot-force model calibration
-The pedestrian lateral-foot-foce model randomly select the properties of each pedestrian within a distribution of these parameters, so the mean, standard deviation and simulation limits must be defined instead of a specific value. The distributions should be defined for the following parameters.
+The pedestrian lateral-foot-force model randomly selects the properties of each pedestrian within a distribution of these parameters, so the mean, standard deviation and simulation limits must be defined instead of a specific value. The distributions should be defined for the following parameters.
 * Pedestrian mass (mi)
 * Pedestrian longitudinal walking speed (vi)
 * Pedestrian gait frequency (fi) (vertical gait frequency, the model calculates and correlates the lateral with the walking speed)
@@ -45,7 +44,7 @@ The following table shows the distributions values used in the case study.
 | Propertie | Distribution | Mean | StandardDeviation  | maxValue | minValue | Source |
 |-|-|-|-|-|-|-|
 | Mass (kg) | Normal | 71.91 | 14.89 | 40 | 50 | Johnson et al 2008 |
-| Walking speed (m/s) | Normal | 1.3 | 0.1 | 10 | Pachi et al 2005 |
+| Walking speed (m/s) | Normal | 1.3 | 0.13 | 0.1 | 10 | Pachi et al 2005 |
 | Gait frequency (hz) | Normal | 1.8 | 0.11 | 1.2 | 2.4 | Were calibrated to obtain the normal distribution in Pachi et al 2005 using their correlation rhofv = 0.51 |
 | ai (-) | Normal | 
 
@@ -62,11 +61,10 @@ The simulation needs the following information:
 * Step size of the pedestrian quantity (np_step) (stripes are 1by1, 10by10, ...) (stripes: 10 20 30 40 .. 200 pedestrians instead of 1by1) 
 
 ### Excecute simulation
-
+After defining all the inputs in main.m, run the script to perform the n_sim simulations for every stripe. The results will be saved on the folder defined in inputs, the predetermined names are yN.txt for maximum bridge displacement in function of time, ypN.txt for maximum bridge velocity in function of time and yppN.txt for maximum bridge acceleration in function of time.
 
 ### Probabilistic analysis
-Once n_sim simulations were performed, the 
-
+Once n_sim simulations were performed, probAnalysis.m file must be used to generate the desired fragility curves and fragility surfaces.
 
 ### Licence
 This is only an academic tool.
