@@ -1,13 +1,13 @@
 # PPBLP - Probabilistic Pedestrian Bridges Lateral Performance
 authors: Alexis Contreras R. and Gastón Fermandois C. 
 
-This repository contains the files and source code to probabilistically assess the latearl performance of pedestrian bridges under crowd-induced lateral vibrations. The method is explained in our publication:
+This repository contains the files and source code to probabilistically assess the lateral performance of pedestrian bridges under crowd-induced lateral vibrations. The method is explained in our publication:
 
 Contreras A., Fermandois G. (year) - Probability of exceeding serviceability criteria for crowd-induced lateral vibrations in footbridges
 doi: 
 
 ## Methodology
-The methodology divdes the problem in two stages. First, the modelling stage, in this stage the model of the bridge, the pedestrian lateral-foot-forces, how the crowd behaves and how they will move along the bridge, and how is the bridge-pedestrian interaction must me defined. The second stage, is the probabilistic analysis.
+The methodology divdes the problem in two stages. First, the modeling stage, includes the bridge's model, the pedestrian lateral-foot-forces model, how the crowd behaves and move along the bridge, and how is the bridge-pedestrian interaction. The second stage, is the probabilistic analysis.
 
 ## Requirements
 * Matlab 2022a
