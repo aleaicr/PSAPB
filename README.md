@@ -3,7 +3,7 @@ authors: Alexis Contreras R. and Gastón Fermandois C.
 
 This repository contains the files and source code to probabilistically assess the lateral performance of pedestrian bridges under crowd-induced lateral vibrations. The method is explained in our publication:
 
-Contreras A., Fermandois G. (year) - Probability of exceeding serviceability criteria for crowd-induced lateral vibrations in footbridges
+Contreras, A., Fermandois, G. (year) - Probability of exceeding serviceability criteria for crowd-induced lateral vibrations in footbridges
 doi: 
 
 ## Methodology
