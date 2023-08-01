@@ -13,8 +13,17 @@ function [] = saveResults(fileFolder,fileName,sCond,pq)
 % A text file with the results is created in the specified folder
 %
 % Notes:
-% The file is created if it does not exist
-% The file is updated if it already exists
+% The data is saved in the following format:
+%  pq1 sCond1(pq1) sCond2(pq1) ... sCondN(pq1)
+%  pq2 sCond1(pq2) sCond2(pq2) ... sCondN2(pq2)
+%  ...
+%  pq_final sCond1(pq_final) sCond2(pq_final) ... sCondN_final(pq_final)
+%
+% Note that the first column is the pedestrian quantity and the other
+% columns are the serviceability conditions for the respective pedestrian
+% quantity. Also, Note that the Serviceability Conditions depends on the number
+% of simulations performed for that pedestrian quantity, so is not necessary that
+% all the pedestrian quantities have the same number of serviceability conditions.
 
 % Create the file name
 fileDir = [fileFolder '\' fileName];
@@ -29,7 +38,7 @@ if exists(fileDir)
     fidTemp = fopen(fileTempDir,'w');
     
     % While loop to read lines
-    found = 0;
+    found = 0;                  % The pedestrian quantity was not found yet
     while ~feof(fid)
         % Original line into a variable
         originalLine = strplitfgetl(fid); % char vector
@@ -49,22 +58,22 @@ if exists(fileDir)
             continue
         end
     end
+
     % If the pedestrian quantity was not found
     if found == 0
-        % Write the last line
+        % Write it in the last line
         fprintf(fidTemp,'%d %d\n',pq,sCond);
     end
 
     % Close the files
-    fclose(fid);
-    fclose(fidTemp);
+    fclose(fid);        % Original file
+    fclose(fidTemp);    % Temporary file
 
     % Rename temporary file to the original file and delete the temporary file
-    movefile(fileTempDir,fileDir);
-end
+    movefile(fileTempDir,fileDir,'f'); % 'f' to overwrite the original file
 
 % If the file does not exist
-if ~exists(fileDir)
+else
     % Create the file
     fid = fopen(fileDir,'w');
     

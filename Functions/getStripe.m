@@ -1,33 +1,31 @@
-function [results] = getStripe(fileFolder, fileName, stripe)
-% Lee una línea específica de un archivo .txt que contiene números float
-% y devuelve los valores de la línea en un vector columna
+function stripe = getStripe(fileFolder,fileName,pq)
+% This returns the data from a single stripe (a specific pedestrian quantity)
+% that is stored in a .txt file.
 %
 % INPUTS:
-% fileName: char vector, con el nombre (y carpeta incluida) del archivo
-% stripe:   double, franja (número de línea) para análisis
+%   fileFolder: (char) the folder where the .txt file is stored
+%   fileName: (char) the name of the .txt file
+%   pq: (char) the pedestrian quantity of the data to be extracted
+% 
+% OUTPUTS:
+%   stripe: (double vector) the data from the .txt file for the specified pedestrian quantity
 %
-% OUTPUTS
-% results:  double vector, todos los valores de la franja (de la línea de texto) 
+% Notes:
 %
-% COMENTARIOS
-% * Recorro el filas hasta llegar a la que quiero
 %
 
-% Abrir el archivo
-fid = fopen([fileFolder '\' fileName],'r');
+% Create the file path
+fileDir = [fileFolder '\' fileName];
 
-% Leer líneas hasta la anterior
-for i = 1:stripe-1
-    fgetl(fid);
-end
+% Read the data from the file
+data = readmatrix(fileDir);
 
-% Leer línea que quiero
-linea = strsplit(fgetl(fid));
+% Find the index of the desired pedestrian quantity
+pqRow = data(data(:,1) == pq,:);    % data(:,1) is the pedestrian quantity column
 
-% Transformar string a vector de doubles
-results = str2double(linea(:));
+% Extract the data for the desired pedestrian quantity
+stripe = pqRow(:,2:end);
 
-% Cerrar archivo
-fclose(fid);
-
+% Quit NaN values in the vector
+stripe = stripe(~isnan(stripe));
 end
