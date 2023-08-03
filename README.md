@@ -41,7 +41,7 @@ The pedestrian lateral-foot-force model randomly selects the properties of each 
 
 The following table shows the distributions values used in the case study.
 
-| Propertie | Distribution | Mean | StandardDeviation  | maxValue | minValue | Source |
+| Properties | Distribution | Mean | StandardDeviation  | maxValue | minValue | Source |
 |-|-|-|-|-|-|-|
 | Mass (kg) | Normal | 71.91 | 14.89 | 40 | 50 | Johnson et al 2008 |
 | Walking speed (m/s) | Normal | 1.3 | 0.13 | 0.1 | 10 | Pachi et al 2005 |
