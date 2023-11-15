@@ -46,7 +46,6 @@ hold off
 xlabel('N = n')
 ylabel('$\Delta = \ddot{y} (N = n)[m/s2]$','interpreter','latex')
 legend(['nsims = ' convertStringsToChars(string(nsims)) '; np = ' convertStringsToChars(string(np))])
-title('Aceleración máxima en puente múltiples franjas')
 grid on
 xlim([0 200])
 % ylim([0 0.6])

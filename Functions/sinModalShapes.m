@@ -12,12 +12,16 @@ function [psi] = sinModalShapes(n_modos,L)
 % psi               -> Symbolic vector containing the modal shapes
 %
 
+% Define symbolic variable
 syms x
+
+% Initialize vector
 psi = sym(zeros(1,n_modos));
+
+% Generate modal shapes functions (symbolic)
 for n = 1:n_modos
     psi(n) = sin(n*pi*x/L);
 end
-
 
 end
 
