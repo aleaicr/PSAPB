@@ -2,7 +2,8 @@
 % Author: Alexis Contreras R
 %
 % Comments:
-% 
+% This alternative main file to execute the simulations perform the same pedestrian quantity
+% for all the simulation time length, instead of using a pedestrian incorporation rate range.
 
 %% Initialization
 clear variables
