@@ -1,50 +1,48 @@
 %% Fragility Curves
-% EDITING
+% Author: Alexis Contreras R.
+% This script generates the fragility curves for the probability analysis
+% The first plot is a single stripe of data (n simulations for a single pedestrian quantity)
 %
-%
-%
-%
-% COMENTARIOS:
-% * Ya se verificó que distribuye como lognormal
-%
+% Notes:
+% This script should be executed after executing the script in main.m that creates the "results" .txt files
 
-%% Inicializar
+
+%% Init
 clear variables
 close all
 clc
 
 %% Inputs
-% Folder y Result a analizar
+% File direction
 fileFolder = 'Results\m1_w1_z1';
-fileName = 'yppN.txt';
+fileName = 'yppN.txt';                  % yppN.txt have the accelerations
 
-% Histfit Check  
-stripe = 150;           % Single stripe to plot too
-nBins = 30;             % Number of bins for histogram
+% Maximum pedestrian quantity
+np = 200;
 
-% delta_max
-delta = 0.1;
+% Inputs to check the distribution of a single stripe
+stripe = 150;           % Pedestrian quantity of the stripe
+nBins = 30;             % Number of bins in histogram
 
-% Cantidad de simulaciones para estimar las curvas
-nSims = 'all';                                  % usar número entero (ej: 1000), o usar 'all' para todas las simulaciones que estén en el archivo
+% Serviceability criteria (delta)
+delta = 0.1; % m/s2           % P(Delta >= delta | N = n)
 
-% Distribución asumida de los resultados de la franja
-distribution = 'lognormal';   % 'normal' o 'lognormal'                      % P(Delta>delta | N = n)  --> distribución del histograma por franja
+% As we're working with yppN.txt, the serviceability criteria is an acceleration.
+% In the case that we work with ypN.txt or yN.txt the criteria should be in m/s or m respectively
+
+% Number of simulations to estimate the curves
+nSims = 'all';             % integer number or 'all', this allow to estimate f.c. with less simulations than the number of sims in results
+
+% Assumed distribution to plot in histogram
+distribution = 'lognormal';   % 'normal' or 'lognormal'    % P(Delta>delta | N = n)  --> distribución del histograma por franja
 alternative = 'pdf';
 
-% Colores para plot
+% Colors in plot
 color1 = '#0072BD';
 color2 = '#D95319';
 color3 = '#EDB120';
 
-%% Previous
-% get np y nsims
-% [np,nsims] = readReadme(fileFolder)
-%%%%% Temporalmente, como ya se saben, solo se pondran
-% nsims = 20;
-np = 200;
-
-%% getStripe figure  ### FOR SINGLE STRIPE
+%% get stripe figure
 resultsForStripe = getStripe(fileFolder,fileName,stripe);
 nsims = length(resultsForStripe);
 figure
@@ -52,7 +50,7 @@ plot(stripe*ones(length(nsims),1),resultsForStripe,'o','color','#606060')
 xlabel('N = n')
 ylabel('$\Delta = \ddot{y} (N = n)[m/s^2]$','interpreter','latex')
 legend(['nsims = ' convertStringsToChars(string(nsims)) '; np = ' convertStringsToChars(string(np))])
-title('Aceleración máxima en puente para una franja')
+title('Maximum bridge acceleration for a single stripe')
 grid on
 xlim([0 200])
 
@@ -61,10 +59,10 @@ disParams = getStripeParams(fileFolder,fileName,stripe,nBins,distribution,altern
 xlabel('\delta(N = n)')
 
 %% get FragCurve
-% Inicializar vectores
+% Init vector
 probs = zeros(np,1); 
 
-% Obtener probabilidades
+% Get probabilities
 for stripe_i = 1:np
     % get Stripe
     [disParams,nSims] = getStripeParams_2(fileFolder,fileName,stripe_i,nSims,nBins,distribution,'');
@@ -80,10 +78,10 @@ plot((1:1:np).',probs,'o','color',colorToUse)                        % Color2: #
 xlabel('N = n')
 ylabel('P(\Delta > \delta_{max} | N = n)')
 if isequal(fileName,'yN.txt')
-    title('Estimaciones de probabilidades')
+    title('Probability estimations')
     legend(['nsims = ' convertStringsToChars(string(nSims)) ' | \delta_{max} = ' convertStringsToChars(string(delta)) ' [m])'])
 elseif isequal(fileName,'yppN.txt')
-    title('Estimaciones de probabilidades')
+    title('Probability estimations')
     legend(['nsims = ' convertStringsToChars(string(nSims)) ' | \delta_{max} = ' convertStringsToChars(string(delta)) ' [m/s^2])'])
 end
 grid on

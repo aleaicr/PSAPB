@@ -1,41 +1,34 @@
 function [Me,Ke,Ce,Ge] = assumedModes_beam_V2(psi,E,I,rho,A,L,zrmodal)
 % Author: Alexis Contreras R.
-% Genera matrices de masa, rigidez y amortiguamiento utilizando el método
-% de MODOS ASUMIDOS de una viga.
-%%
+% Generate the equivalent matrices of mass, stiffness, damping and (participación modal, G)
+% using the assumed modes method in a simply supported beam and the proportional modal damping.
 % Inputs
-% psi           -> (sym) Vector de funciones con las formas modales
-% E             -> (Escalar)Modulo de elasticidad de la viga equivalente
-% I             -> (Escalar) Inercia en dirección de análisis de la viga equivalente
-% rho           -> (Escalar) Densidad lineal de la viga equivalente
-% A             -> (Escalar) Area de sección de la viga equivalente
-% L             -> (Escalar) Largo de la viga
-% zrmodal       -> (Vector) Amortiguamiento de cada modo
-% P             -> Función de carga (integrable)
-
+% psi           -> (sym vector) Vector of modal shape functions
+% E             -> (double) Modulus of elasticity of the equivalent beam
+% I             -> (double) Moment of inertia of the equivalent beam in the direction of analysis
+% rho           -> (double) Linear density of the equivalent beam
+% A             -> (double) Cross-sectional area of the equivalent beam
+% L             -> (double) Length of the beam
+% zrmodal       -> (double vector) Damping of each mode
+%
 % Outputs
-% Me            -> (Matriz) de masa equivalente
-% Ke            -> (Matriz) de Rigidez equivalente
-% Ce            -> (Matriz) de dAmortiguaiento equivalente (proporcional)
-% Ge            -> (Matriz) de Participación equivalente (en verdad queda como una identidad siempre) 
+% Me            -> (double Matrix) Equivalent mass matrix
+% Ke            -> (double Matrix) Equivalent stiffness matrix
+% Ce            -> (double Matrix) Equivalent proportional damping matrix
+% Ge            -> (double Matrix) Equivalent modal participation matrix (always remains an identity matrix)
 %%
+
 syms x
 ddpsi = diff(psi,x,x);
-cant_modos = length(psi);
-
-% Matriz de masa equivalente
+nModos = length(psi);
 Me = double(int(rho*A*(psi).'*psi,x,0,L));
-
-% Matriz de Rigidez equivalente
 Ke = double(int(E*I*(ddpsi).'*ddpsi,x,0,L));
+Ge = eye(nModos,nModos); 
 
-% Participación modal ??? % No me acuerdo el nombre exacto
-Ge = eye(cant_modos,cant_modos); 
-
-% Amortiguamiento modal proporcional
-[~, lambda] = eig(Ke,Me);                                                   % Problema de valores y vectores propios
+% Proportional modal damping
+[~, lambda] = eig(Ke,Me);                                                
 wn = sqrt(diag(lambda));  
-Phi = eye(cant_modos);
-Ce = (Me*Phi)*diag(2*zrmodal.*wn./Me).*(Me*Phi).';                          % Matriz de amortiguamiento
+Phi = eye(nModos);
+Ce = (Me*Phi)*diag(2*zrmodal.*wn./Me).*(Me*Phi).';                       
 end
 

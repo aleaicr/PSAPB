@@ -1,31 +1,31 @@
 function [] = deleteWrong(fileFolder,fileName,max_value)
 % Author: Alexis Contreras R.
-% This function deletes the 
+% This function deleltes/discard the failed Monte-Carlo simulation results
 % 
 % INPUTS:
-% fileFoolder:
+% fileFolder:
 % fileName:
 % max_value:
 %
 % OUTPUTS:
-% - : Ninguno pero reescribe el archivo
+% - : No outputs, but writes a file
 %
-% COMENTARIOS:
-% * Esta función verifica si el mayor número de la columna es mayor al
-% max_value, entonces borra la columna, no hay que ver uno por uno.
-% *
+% NOTES:
+% * This function check if the largest number of the i-th column is larger than max_value, if the condition
+% is true, then deletes the column. There is no need to verify one by one.
+%%
 
-% Direcciones de archivos
+% File direction
 fileDir = [fileFolder '\' fileName];
-fileDirTemp = [fileFolder '\temp.txt'];
+fileDirTemp = [fileFolder '\temp.txt']; % Temporal file
 
-% Cargar los datos desde el archivo txt
+% Load data
 datos = load(fileDir);
 
-% Obtener el número de columnas de los datos
+% Number of columns (number of simulations) in the file
 nSimus = size(datos, 2);
 
-% Recorrer columnas
+% Loop in columns
 column = 1;                                                                 % Inicializar columna en la que voy observando
 while column <= nSimus
     maxInColumn = max(datos(:,column));                                     % Máximo valor de columna

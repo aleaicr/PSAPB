@@ -1,4 +1,5 @@
 function [Me,Ke,Ce,Ge,wn] = assumedModes_beam(psi,EI,rho_lin,L,zrmodal)
+% CREO QUE YA NO LA USO
 % Author: Alexis Contreras R.
 % Generate mass, stiffness and damping matrices using the Assumed Modes method for a beam
 %
