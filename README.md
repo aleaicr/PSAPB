@@ -1,6 +1,6 @@
 # PPBLP - Probabilistic Serviceability Analysis for Crowd-Induced Lateral Vibrations in Footbridges
-probabilistic or uncertainty or epistemic
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8190981.svg)](https://doi.org/10.5281/zenodo.8190981) 
+probabilistic or uncertainty or epistemic. \
 authors: Alexis Contreras R. and Gastón Fermandois C. 
 
 This repository contains the files and source code to probabilistically assess the lateral performance of pedestrian bridges under crowd-induced lateral vibrations. The method is explained in our publication:
