@@ -1,4 +1,8 @@
 # Pedestrian Lateral Footforce
+This is from the study of Bocian
+![image](https://github.com/user-attachments/assets/879c0087-e223-45bb-acfc-2c6abf6532bc)
+
+This is what I achieved with the new lateral foot-force model.
 ![image](https://github.com/user-attachments/assets/be12fb77-627b-47ac-b53e-2353c38fc93d)
 
 After calibration for multiple masses and walking frequencies
