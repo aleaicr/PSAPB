@@ -5,7 +5,7 @@ Authors: Alexis Contreras R. and Gastón Fermandois C.
 
 This repository contains the files and source code to probabilistically assess the lateral performance of pedestrian bridges under crowd-induced lateral vibrations. The method is explained in our publication:
 
-Contreras, A., Fermandois, G. (2025) - Probability of exceeding serviceability criteria for crowd-induced lateral vibrations in footbridges (in review).
+Contreras, A., and Fermandois, G. (2025). Probability of exceeding serviceability criteria for crowd-induced lateral vibrations in footbridges (in review).
  
 
 ## Methodology
@@ -18,7 +18,7 @@ The problem is addressed in two stages. The first stage is modeling, which takes
 ## Instructions / How to use
 ### Assumptions
 * The bridge can be modeled as an equivalent simply supported beam with sinusoidal modal shapes.
-*  
+
 ### Calibrations
 #### Bridge model calibration
 The following parameters must be calibrated for the bridge under study (consider equivalent properties).
@@ -29,7 +29,7 @@ The following parameters must be calibrated for the bridge under study (consider
 * Distributed stiffness ($EI$)
 * Number of modes (n_modes)
 
-These parameters must be obtained by replicating the modal shapes of the specific bridge. To help with this step, the first thing that the execution of main.m does is to show the eigenvalue analysis results (poles, frequencies, and damping ratio). Additionally, there is a bridgeCalibration.m file to only show the eigen analysis results ($p$, $\omega_n$, $\xi_n$), the resulting modal shapes ($\psi_n$), the equivalent EOM matrices ($M_e$, $C_e$, $K_e$, $G_e$) and the state-space matrices ($A$,$B$,$C$,$D$)
+These parameters must be obtained by replicating the modal shapes of the specific bridge. To help with this step, the first thing that the execution of main.m does is to show the eigenvalue analysis results (poles, frequencies, and damping ratio). Additionally, there is a bridgeCalibration.m file to only show the eigen analysis results ($p$, $\omega_n$, $\xi_n$), the resulting modal shapes ($\psi_n$), the equivalent EOM matrices ($M_e$, $C_e$, $K_e$, $G_e$) and the state-space matrices ($A$, $B$, $C$, $D$)
 
 #### Pedestrian foot-force model calibration
 The pedestrian lateral-foot-force model randomly selects the properties of each pedestrian within a distribution of these parameters, so the mean, standard deviation, and simulation limits must be defined instead of a specific value. The distributions should be defined for the following parameters.
