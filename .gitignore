@@ -1,0 +1,10 @@
+slprj/
+fixed_files/
+PSAPB_tmp.code-workspace
+testing_main_simulation.mlx
+*.asv
+*.slxc
+results/
+.agent/
+.*r2025a
+src/paralell_temp/
