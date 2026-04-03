@@ -1,5 +1,5 @@
 # PSAPB - Probabilistic Serviceability Assessment of Pedestrian Bridges
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8190981.svg)](https://doi.org/10.5281/zenodo.18506997) 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19393111.svg)](https://doi.org/10.5281/zenodo.19393111) 
 
 Authors: Alexis Contreras R. and Gastón Fermandois C. and Pablo Heresi V.
 
